@@ -1,9 +1,6 @@
 import {Component} from 'angular2/core';
-
-interface Hero {
-    id: number;
-    name: string;
-}
+import {Hero} from './hero';
+import {HeroDetailComponent} from './hero-detail.component';
 
 @Component({
     selector: 'my-app',
@@ -24,17 +21,9 @@ interface Hero {
             </div>
         </ul>
     </div>
-    <div *ngIf="selectedHero" class="ui modal">
-        <div class="header">{{selectedHero.name}} details!</div>
-        <div class="content">
-            <div class="ui tag label">ID {{selectedHero.id}}</div><br><br>
-            <div class="ui labeled input">
-                <div class="ui label">Name</div>
-                <input [(ngModel)]="selectedHero.name" placeholder="name">
-            </div>
-        </div>
-    </div>
-        `
+    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+        `,
+    directives: [HeroDetailComponent]
 })
 
 export class AppComponent {
@@ -44,6 +33,7 @@ export class AppComponent {
     
     onSelect(hero: Hero) { 
         this.selectedHero = hero; 
+        alert(hero);
         $('.ui.modal').modal('show');
     }
 }

@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './hero-detail.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, hero_detail_component_1;
     var AppComponent, HEROES;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -23,12 +26,14 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 AppComponent.prototype.onSelect = function (hero) {
                     this.selectedHero = hero;
+                    alert(hero);
                     $('.ui.modal').modal('show');
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <div class=\"ui text container\">\n        <h1>Angular 2</h1>\n        <h1>{{title}}</h1>\n    \n        <h2>My Heroes</h2>\n        <ul class=\"heroes\" class=\"ui stacked segment\">\n            <div class=\"ui middle aligned selection list\" *ngFor=\"#hero of heroes\" (click)=\"onSelect(hero)\">\n                <div class=\"item\">\n                    {{hero.id}}\n                    <div class=\"content\">\n                        <div class=\"header\">{{hero.name}}</div>\n                    </div>\n                </div>\n            </div>\n        </ul>\n    </div>\n    <div *ngIf=\"selectedHero\" class=\"ui modal\">\n        <div class=\"header\">{{selectedHero.name}} details!</div>\n        <div class=\"content\">\n            <div class=\"ui tag label\">ID {{selectedHero.id}}</div><br><br>\n            <div class=\"ui labeled input\">\n                <div class=\"ui label\">Name</div>\n                <input [(ngModel)]=\"selectedHero.name\" placeholder=\"name\">\n            </div>\n        </div>\n    </div>\n        "
+                        template: "\n    <div class=\"ui text container\">\n        <h1>Angular 2</h1>\n        <h1>{{title}}</h1>\n    \n        <h2>My Heroes</h2>\n        <ul class=\"heroes\" class=\"ui stacked segment\">\n            <div class=\"ui middle aligned selection list\" *ngFor=\"#hero of heroes\" (click)=\"onSelect(hero)\">\n                <div class=\"item\">\n                    {{hero.id}}\n                    <div class=\"content\">\n                        <div class=\"header\">{{hero.name}}</div>\n                    </div>\n                </div>\n            </div>\n        </ul>\n    </div>\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
+                        directives: [hero_detail_component_1.HeroDetailComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
