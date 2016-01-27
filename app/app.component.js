@@ -1,4 +1,4 @@
-System.register(['angular2/core', './hero-detail.component'], function(exports_1) {
+System.register(['angular2/core', './hero-detail.component', './hero.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +8,8 @@ System.register(['angular2/core', './hero-detail.component'], function(exports_1
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, hero_detail_component_1;
-    var AppComponent, HEROES;
+    var core_1, hero_detail_component_1, hero_service_1;
+    var AppComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -17,41 +17,39 @@ System.register(['angular2/core', './hero-detail.component'], function(exports_1
             },
             function (hero_detail_component_1_1) {
                 hero_detail_component_1 = hero_detail_component_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_heroService) {
+                    this._heroService = _heroService;
                     this.title = 'Tour of Heroes';
-                    this.heroes = HEROES;
                 }
+                AppComponent.prototype.getHeroes = function () {
+                    var _this = this;
+                    this._heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+                };
+                AppComponent.prototype.ngOnInit = function () {
+                    this.getHeroes();
+                };
                 AppComponent.prototype.onSelect = function (hero) {
                     this.selectedHero = hero;
-                    //alert(hero);
                     $('.ui.modal').modal('show');
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <div class=\"ui text container\">\n        <h1>Angular 2</h1>\n        <h1>{{title}}</h1>\n    \n        <h2>My Heroes</h2>\n        <ul class=\"heroes\" class=\"ui stacked segment\">\n            <div class=\"ui middle aligned selection list\" *ngFor=\"#hero of heroes\" (click)=\"onSelect(hero)\">\n                <div class=\"item\">\n                    {{hero.id}}\n                    <div class=\"content\">\n                        <div class=\"header\">{{hero.name}}</div>\n                    </div>\n                </div>\n            </div>\n        </ul>\n    </div>\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n        ",
-                        directives: [hero_detail_component_1.HeroDetailComponent]
+                        templateUrl: '/app/templates/app.template.html',
+                        directives: [hero_detail_component_1.HeroDetailComponent],
+                        providers: [hero_service_1.HeroService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [hero_service_1.HeroService])
                 ], AppComponent);
                 return AppComponent;
             })();
             exports_1("AppComponent", AppComponent);
-            HEROES = [
-                { "id": 11, "name": "Mr. Nice" },
-                { "id": 12, "name": "Narco" },
-                { "id": 13, "name": "Bombasto" },
-                { "id": 14, "name": "Celeritas" },
-                { "id": 15, "name": "Magneta" },
-                { "id": 16, "name": "RubberMan" },
-                { "id": 17, "name": "Dynama" },
-                { "id": 18, "name": "Dr IQ" },
-                { "id": 19, "name": "Magma" },
-                { "id": 20, "name": "Tornado" }
-            ];
         }
     }
 });

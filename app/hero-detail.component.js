@@ -22,7 +22,7 @@ System.register(['angular2/core'], function(exports_1) {
                 HeroDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-detail',
-                        template: "\n    <div *ngIf=\"hero\" class=\"ui modal\">\n        <div class=\"header\">{{hero.name}} details!</div>\n        <div class=\"content\">\n            <div class=\"ui tag label\">ID {{hero.id}}</div><br><br>\n            <div class=\"ui labeled input\">\n                <div class=\"ui label\">Name</div>\n                <input [(ngModel)]=\"hero.name\" placeholder=\"Name\">\n            </div>\n        </div>\n    </div>\n    ",
+                        template: 'app/templates/hero-detail.template.html',
                         inputs: ['hero']
                     }), 
                     __metadata('design:paramtypes', [])
