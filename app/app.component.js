@@ -26,7 +26,7 @@ System.register(['angular2/core', './hero-detail.component'], function(exports_1
                 }
                 AppComponent.prototype.onSelect = function (hero) {
                     this.selectedHero = hero;
-                    alert(hero);
+                    //alert(hero);
                     $('.ui.modal').modal('show');
                 };
                 AppComponent = __decorate([

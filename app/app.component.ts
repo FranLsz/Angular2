@@ -33,7 +33,7 @@ export class AppComponent {
     
     onSelect(hero: Hero) { 
         this.selectedHero = hero; 
-        alert(hero);
+        //alert(hero);
         $('.ui.modal').modal('show');
     }
 }
