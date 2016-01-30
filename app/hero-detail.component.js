@@ -22,7 +22,7 @@ System.register(['angular2/core'], function(exports_1) {
                 HeroDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-hero-detail',
-                        template: 'app/templates/hero-detail.template.html',
+                        templateUrl: 'app/templates/hero-detail.template.html',
                         inputs: ['hero']
                     }), 
                     __metadata('design:paramtypes', [])
